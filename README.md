@@ -1,12 +1,12 @@
-<img src="https://raw.githubusercontent.com/Faithful-Resource-Pack/Branding/refs/heads/main/logos/transparent/512/f32_logo.png" alt="Faithful 32x" align="right" height="256px">
+<img src="https://database.faithfulpack.net/images/branding/logos/transparent/hd/f32_logo.png?w=256" alt="Faithful 32x" align="right" height="256px">
 <div align="center">
   <h1>Faithful 32x</h1>
-  <h3>The original Minecraft texture feel, with double the resolution and double the fun!</h3>
+  <h3>The go-to 32x resource pack for Minecraft.</h3>
   <h5><i>Official Java Edition repository</i></h5>
 
-![RepoSize](https://img.shields.io/github/repo-size/Faithful-Resource-Pack/Faithful-32x-Java)
-![Issues](https://img.shields.io/github/issues/Faithful-Resource-Pack/Faithful-32x-Java)
-![PullRequests](https://img.shields.io/github/issues-pr/Faithful-Resource-Pack/Faithful-32x-Java)
+  ![RepoSize](https://img.shields.io/github/repo-size/Faithful-Resource-Pack/Faithful-32x-Java)
+  ![Issues](https://img.shields.io/github/issues/Faithful-Resource-Pack/Faithful-32x-Java)
+  ![PullRequests](https://img.shields.io/github/issues-pr/Faithful-Resource-Pack/Faithful-32x-Java)
 </div>
 
 ---
@@ -17,6 +17,6 @@ The latest release versions can be downloaded on [our website](https://faithfulp
 ## How to switch versions:
 To view the pack files and to switch between resource pack versions, click the branch button (`main`) and select the version you want to see! 
 
-If you want to play on snapshots or pre-releases, the `java-latest` branch contains textures that aren't in numbered versions yet.
+The latest stable version is stored in `java-latest`, and snapshot and prerelease versions (if available) in `java-snapshot`.
 
 <img src="https://user-images.githubusercontent.com/75297863/163904169-6ab97237-946c-4cf2-be60-3909a464d308.png" align="center" height="512px">
