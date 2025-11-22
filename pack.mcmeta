@@ -1,6 +1,7 @@
 {
   "pack": {
     "description": "The go-to 32x resource pack.",
-    "pack_format": 69
+    "min_format": [69, 0],
+    "max_format": [69, 0]
   }
 }
