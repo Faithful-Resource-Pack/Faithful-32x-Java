@@ -1,9 +1,9 @@
 {
   "pack": {
-    "pack_format": 64,
-    "description": "The go-to 32x resource pack.\n§Rolling Release",
+    "pack_format": 63,
+    "description": "The go-to 32x resource pack.",
     "supported_formats": {
-      "min_inclusive": 43,
+      "min_inclusive": 63,
       "max_inclusive": 64
     }
   }
