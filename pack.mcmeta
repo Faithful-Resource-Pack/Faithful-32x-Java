@@ -2,9 +2,5 @@
   "pack": {
     "pack_format": 55,
     "description": "The go-to 32x resource pack.",
-    "supported_formats": {
-      "min_inclusive": 55,
-      "max_inclusive": 64
-    }
   }
 }
