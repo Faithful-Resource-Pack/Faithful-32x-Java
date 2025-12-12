@@ -1,0 +1,9 @@
+# This file serves as a template to define **GitHub Workflow Variables (vars)**
+# for local testing using the 'act' command-line tool.
+#
+# It should contain KEY=VALUE pairs for variables accessed in your workflow 
+# via the syntax ${{ vars.KEY_NAME }}. These values are not secrets and are 
+# used to control build behavior (e.g., naming artifacts or specifying versions).
+
+# The name of the zip file on the remote server
+PACK_NAME=""
