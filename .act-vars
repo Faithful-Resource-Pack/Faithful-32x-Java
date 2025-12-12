@@ -7,3 +7,6 @@
 
 # The name of the zip file on the remote server
 PACK_NAME=""
+
+# The absolute path for the root folder of all resource packs
+ROOT_DIRECTORY=""

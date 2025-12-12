@@ -61,7 +61,7 @@ jobs:
         
         SANITIZED_REF_NAME=$(echo "${{ github.ref_name }}" | tr ' ' '-')
 
-        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p ~/var/www/html/database.faithfulpack.net/packs/${SANITIZED_REF_NAME}"
-        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.PACK_NAME }}.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/var/www/html/database.faithfulpack.net/packs/${SANITIZED_REF_NAME}
+        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p ${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}"
+        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.PACK_NAME }}.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}
 
-        echo "File uploaded to ~/var/www/html/database.faithfulpack.net/packs/${SANITIZED_REF_NAME}"
+        echo "File uploaded to ${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}"
