@@ -11,12 +11,12 @@ jobs:
     # Set up the ssh agent (easier & faster than creating folders, config, and authorized_keys)
     - uses: webfactory/ssh-agent@v0.9.0
       with:
-        ssh-private-key: ${{ secrets.SSH }}
+        ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
     # Saves the branch files on the runner
     - name: Checkout
       uses: actions/checkout@v6
-      with: 
+      with:
         fetch-depth: 0
 
     # Verifies the pipeline has the necessary data to create a pack
@@ -27,13 +27,11 @@ jobs:
         REQUIRED_ITEMS=(
           "assets/"
           "pack.mcmeta"
-          "pack.png"
-          "LICENSE"
         )
 
         for ITEM in "${REQUIRED_ITEMS[@]}"; do
           if [ ! -e "$ITEM" ]; then
-            echo "Files $ITEM is mising. Exiting..."
+            echo "Files $ITEM is missing. Exiting..."
             exit 1
           fi
         done
@@ -47,21 +45,21 @@ jobs:
         sudo apt-get install -y rsync
 
     # 1 - zips the pack
-    # 2 - sanitizes the pack name removing spaces (maybe not needed but it can break things), 
-    # 3 - creates subdirectories, rsync not always does that
+    # 2 - sanitizes the pack name removing spaces (maybe not needed but it can break things),
+    # 3 - creates subdirectories, rsync doesn't always do that
     # 4 - transfers file to server
     - name: "Remote Upload"
       if: steps.verify_step.outcome == 'success'
       run: |
         echo "Creating resource pack zip..."
         ls -ls ~
-        zip -r ${{ vars.PACK_NAME }}.zip assets pack.mcmeta pack.png LICENSE
+        zip -r ${{ vars.ZIP_NAME }}.zip assets pack.mcmeta pack.png LICENSE
 
         echo "Sending file to the server"
-        
+
         SANITIZED_REF_NAME=$(echo "${{ github.ref_name }}" | tr ' ' '-')
 
-        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p ${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}"
-        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.PACK_NAME }}.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p ${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}"
+        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.ZIP_NAME }}.zip ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}
 
-        echo "File uploaded to ${{ vars.ROOT_DIRECTORY }}/${SANITIZED_REF_NAME}"
+        echo "File uploaded to ${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}"
