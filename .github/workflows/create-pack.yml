@@ -35,10 +35,10 @@ jobs:
 
         NAME=$(echo "${{ vars.NAME_TEMPLATE }}" | sed "s|%version%|${{ github.ref_name }}|")
 
-        zip -r "${NAME}.zip" assets pack.mcmeta pack.png LICENSE
+        zip -r "${NAME}.zip" . -x ".*" -x "*/.*"
         echo "Sending file to the server"
 
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \"${{ vars.ZIP_PATH }}/${{ github.ref_name }}\""
-        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" "${NAME}.zip" "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${NAME}\""
+        ssh -p ${{ vars.VPS_SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \""${{ vars.ZIP_PATH }}\""
+        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" "${NAME}.zip" "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${NAME}.zip\""
 
-        echo "File uploaded to \"${{ vars.ZIP_PATH }}/${NAME}\""
+        echo "File uploaded to \"${{ vars.ZIP_PATH }}/${NAME}.zip\""
