@@ -38,7 +38,7 @@ jobs:
         zip -r "${NAME}.zip" . -x ".*" -x "*/.*"
         echo "Sending file to the server"
 
-        ssh -p ${{ vars.VPS_SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \""${{ vars.ZIP_PATH }}\""
+        ssh -p ${{ vars.VPS_SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \"${{ vars.ZIP_PATH }}\""
         rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" "${NAME}.zip" "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${NAME}.zip\""
 
         echo "File uploaded to \"${{ vars.ZIP_PATH }}/${NAME}.zip\""
