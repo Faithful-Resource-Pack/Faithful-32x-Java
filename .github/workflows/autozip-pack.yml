@@ -15,7 +15,7 @@ jobs:
         ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
     # Saves the branch files on the runner
-    - name: Checkout
+    - name: Get deployed branch
       uses: actions/checkout@v6
       with:
         fetch-depth: 0
@@ -23,7 +23,7 @@ jobs:
     # 1 - zips the pack
     # 2 - creates subdirectories (rsync doesn't always do that)
     # 3 - transfers file to server
-    - name: "Remote Upload"
+    - name: "Zip and upload pack"
       run: |
         echo "Creating resource pack zip..."
 
