@@ -20,12 +20,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Not sure if this is needed but local testing with `act` requires it (medium-image used)
-    - name: Install rsync
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y rsync
-
     # 1 - zips the pack
     # 2 - creates subdirectories (rsync doesn't always do that)
     # 3 - transfers file to server
