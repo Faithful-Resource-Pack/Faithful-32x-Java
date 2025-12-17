@@ -31,12 +31,13 @@ jobs:
     - name: "Remote Upload"
       run: |
         echo "Creating resource pack zip..."
-        ls -ls ~
-        zip -r ${{ vars.ZIP_NAME }}.zip assets pack.mcmeta pack.png LICENSE
 
+        NAME=$(echo "${{ vars.NAME_TEMPLATE }}" | sed "s|%version%|${{ github.ref_name }}|")
+
+        zip -r "${NAME}.zip" assets pack.mcmeta pack.png LICENSE
         echo "Sending file to the server"
 
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \"${{ vars.ZIP_PATH }}/${{ github.ref_name }}\""
-        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.ZIP_NAME }}.zip "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${{ github.ref_name }}\""
+        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" "${NAME}.zip" "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${NAME}\""
 
-        echo "File uploaded to ${{ vars.ZIP_PATH }}/${{ github.ref_name }}"
+        echo "File uploaded to \"${{ vars.ZIP_PATH }}/${NAME}\""
