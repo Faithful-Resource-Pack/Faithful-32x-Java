@@ -1,0 +1,12 @@
+# This file serves as a template to define **GitHub Workflow Variables (vars)**
+# for local testing using the 'act' command-line tool.
+#
+# It should contain KEY=VALUE pairs for variables accessed in your workflow
+# via the syntax ${{ vars.KEY_NAME }}. These values are not secrets and are
+# used to control build behavior (e.g., naming artifacts or specifying versions).
+
+# The name of the zip file on the remote server, with the branch name replaced with %VERSION%
+ZIP_NAME_TEMPLATE="Faithful: Smart Fridge Edition - %VERSION%"
+
+# The absolute path to the location of all versioned zips on the remote server (no trailing slash)
+ZIP_PATH="/home/vattic/packs/fridge"
