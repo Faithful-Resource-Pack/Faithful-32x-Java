@@ -19,25 +19,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Verifies the pipeline has the necessary data to create a pack
-    - name: "Verify Contents"
-      id: "verify_step"
-      run: |
-        echo "Verifying required files and directories..."
-        REQUIRED_ITEMS=(
-          "assets/"
-          "pack.mcmeta"
-        )
-
-        for ITEM in "${REQUIRED_ITEMS[@]}"; do
-          if [ ! -e "$ITEM" ]; then
-            echo "Files $ITEM is missing. Exiting..."
-            exit 1
-          fi
-        done
-
-        echo "All files have been found."
-
     # Not sure if this is needed but local testing with `act` requires it (medium-image used)
     - name: Install rsync
       run: |
@@ -49,7 +30,6 @@ jobs:
     # 3 - creates subdirectories, rsync doesn't always do that
     # 4 - transfers file to server
     - name: "Remote Upload"
-      if: steps.verify_step.outcome == 'success'
       run: |
         echo "Creating resource pack zip..."
         ls -ls ~
@@ -57,9 +37,7 @@ jobs:
 
         echo "Sending file to the server"
 
-        SANITIZED_REF_NAME=$(echo "${{ github.ref_name }}" | tr ' ' '-')
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p \"${{ vars.ZIP_PATH }}/${{ github.ref_name }}\""
+        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.ZIP_NAME }}.zip "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:\"${{ vars.ZIP_PATH }}/${{ github.ref_name }}\""
 
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }} "mkdir -p ${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}"
-        rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no" ${{ vars.ZIP_NAME }}.zip ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}:${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}
-
-        echo "File uploaded to ${{ vars.ZIP_PATH }}/${SANITIZED_REF_NAME}"
+        echo "File uploaded to ${{ vars.ZIP_PATH }}/${{ github.ref_name }}"
