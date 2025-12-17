@@ -2,6 +2,9 @@ name: Autozip Pack
 on:
   push:
     branches:
+    # https://stackoverflow.com/a/57903434/20327257
+    - "*"
+    - "*/*"
     - "**"
     - "!main"
     - "!master"
