@@ -1,0 +1,56 @@
+name: Autozip Pack
+on:
+  push:
+    branches-ignore:
+    - main
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Set up the ssh agent (easier & faster than creating folders, config, and authorized_keys)
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+    # Saves the branch files on the runner
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    # Not sure if this is needed but local testing with `act` requires it (medium-image used)
+    - name: Install rsync
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y rsync
+
+    # 1 - zips the pack
+    # 2 - creates subdirectories (rsync doesn't always do that)
+    # 3 - transfers file to server
+    - name: "Remote Upload"
+      run: |
+        echo "Creating resource pack zip..."
+
+        ZIP_NAME=$(echo "${{ vars.ZIP_NAME_TEMPLATE }}" | sed "s|%VERSION%|${{ github.ref_name }}|")
+        FINAL_LOCATION="${{ vars.ZIP_PATH }}/${ZIP_NAME}.zip"
+
+        zip -r "${ZIP_NAME}.zip" . -x ".*" -x "*/.*"
+
+        echo "Creating directory ${{ vars.ZIP_PATH }} on server..."
+
+        SSH_ADDRESS="${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST_IP }}"
+
+        ssh -p ${{ secrets.VPS_SSH_PORT }} -o StrictHostKeyChecking=no \
+          "$SSH_ADDRESS" \
+          "mkdir -p \"${{ vars.ZIP_PATH }}\""
+
+        echo "Uploading file to server..."
+
+        rsync -havzP \
+          -e "ssh -p ${{ secrets.VPS_SSH_PORT }} -o StrictHostKeyChecking=no" \
+          "${ZIP_NAME}.zip" \
+          "${SSH_ADDRESS}:${FINAL_LOCATION}"
+
+        echo "File uploaded to $FINAL_LOCATION"
