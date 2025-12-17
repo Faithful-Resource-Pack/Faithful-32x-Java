@@ -3,9 +3,8 @@ on:
   push:
     branches:
     - "**"
-    branches-ignore:
-    - "main"
-    - "master"
+    - "!main"
+    - "!master"
 
 jobs:
   build:
