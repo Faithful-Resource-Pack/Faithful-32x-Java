@@ -1,24 +1,23 @@
 name: Autozip Pack
+
 on:
   push:
-    branches-ignore:
-    - main
-    - master
+    branches-ignore: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    # Set up the ssh agent (easier & faster than creating folders, config, and authorized_keys)
-    - uses: webfactory/ssh-agent@v0.9.0
+    # Sets up SSH agent (easier than creating folders, config, and authorized_keys)
+    - name: Set up SSH authentication
+      uses: webfactory/ssh-agent@v0.9.0
       with:
         ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
-    # Saves the branch files on the runner
-    - name: Get deployed branch
+    # Fetches the branch files on the runner
+    - name: Get updated branch
       uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
 
     # 1 - zips the pack
     # 2 - creates subdirectories (rsync doesn't always do that)
@@ -28,9 +27,10 @@ jobs:
         echo "Creating resource pack zip..."
 
         ZIP_NAME=$(echo "${{ vars.ZIP_NAME_TEMPLATE }}" | sed "s|%VERSION%|${{ github.ref_name }}|")
-        FINAL_LOCATION="${{ vars.ZIP_PATH }}/${ZIP_NAME}.zip"
+        ZIP_FILENAME=${ZIP_NAME}.${{ vars.ZIP_EXTENSION }}
+        FINAL_LOCATION="${{ vars.ZIP_PATH }}/${ZIP_FILENAME}"
 
-        zip -r "${ZIP_NAME}.zip" . -x ".*" -x "*/.*"
+        zip -r "${ZIP_FILENAME}" . -x ".*" -x "*/.*"
 
         echo "Creating directory ${{ vars.ZIP_PATH }} on server..."
 
@@ -44,7 +44,7 @@ jobs:
 
         rsync -havzP \
           -e "ssh -p ${{ secrets.VPS_SSH_PORT }} -o StrictHostKeyChecking=no" \
-          "${ZIP_NAME}.zip" \
+          "${ZIP_FILENAME}" \
           "${SSH_ADDRESS}:${FINAL_LOCATION}"
 
         echo "File uploaded to $FINAL_LOCATION"
