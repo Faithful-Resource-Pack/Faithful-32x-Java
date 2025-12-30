@@ -1,10 +1,10 @@
 {
   "pack": {
-    "pack_format": 63,
-    "description": "The go-to 32x resource pack.\n§8Rolling Release",
+    "pack_format": 81,
+    "description": "The go-to 32x resource pack.\n§8December 2025 Release",
     "supported_formats": {
-      "min_inclusive": 63,
-      "max_inclusive": 64
+      "min_inclusive": 72,
+      "max_inclusive": 81
     }
   }
 }
