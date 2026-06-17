@@ -1,11 +1,7 @@
 {
   "pack": {
     "description": "The go-to 32x resource pack.\n§8June 2026 Release",
-    "min_format": [
-      100,
-    ],
-    "max_format": [
-      108,
-    ]
+    "min_format": 102,
+    "max_format": 108
   }
 }
