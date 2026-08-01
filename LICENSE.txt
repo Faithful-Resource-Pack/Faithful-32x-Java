@@ -1,57 +1,69 @@
-FAITHFUL LICENSE
-Version 3 - 20th February 2023
+                                FAITHFUL LICENSE
+                            Version 4 - Jul 31, 2026
+                      Copyright (C) Faithful Resource Pack
+                        https://faithfulpack.net/license
 
-Copyright © Faithful Resource Pack
-
+We (Faithful) encourage using and modifying our work for your own projects. That
+being said, there are a few ground rules to keep things fair for our artists and
+developers. In general, you'll be fine if you're being honest about what you're
+using and aren't trying to take advantage of our policies or contributors.
 
 You may do the following:
+1.  Use, modify, and distribute our work for both Minecraft and non-Minecraft
+    projects. This includes but is not limited to adventure maps, mods, server
+    resource packs, content creator edits, and your own games or software.
+2.  Use our work as reference material or inspiration for your own projects.
+3.  Use our work as placeholder content.
+4.  Produce monetized videos or streams that use our packs.
 
+Requirements if doing any of the above:
+1.  Give clear credit to us in an appropriate and obvious place. This could be
+    in a video or listing description, a project README or credits.txt file, or
+    a resource pack's pack.mcmeta or manifest.json.
+2.  Provide a clearly visible link to our website (https://faithfulpack.net).
+3.  Be honest and clear about what you reference or use. When possible, don't
+    just say that "some textures are from Faithful" with no further information;
+    instead, try to cite the specific resource pack and content being used.
+4.  Only use what you need to use. If you're making a resource pack that's
+    mostly unmodified Faithful textures, consider making it an add-on that gets
+    overlaid on top of a base pack instead.
+5.  Either include an unmodified copy of this file or a link to our license at
+    https://faithfulpack.net/license with all project distributions.
 
-1: Use our work as placeholders.
-
-2: Use our work as a base or reference for your own content (e.g. modded textures, content creator edits).
-
-3: Use a few textures that you cannot properly make, such as painting or particle textures.
-
-4: Distribute a modified copy of a pack as a content creator with your videos or streams.
-
-5: Use our work for adventure maps, server resource packs, mod textures, or data packs.
-
-
-By doing any of the above, you agree to follow these requirements:
-
-
-1: Give clear credit in an appropriate place (e.g. video descriptions, pack.mcmetas, listing descriptions).
-
-2: Link back to our website, which you can find here:
-	https://faithfulpack.net/
-
-3: Don't take credit for work you didn't make and always give proper attribution to any work you use or modify. In addition, try to be somewhat specific about what you're using, as "GUI originally from Faithful 32x" works a lot better than "some textures from Faithful". Just be honest about what you're using, use common sense when in doubt, and you'll be fine.
-
-4: Do not monetize content that contains any of our work, modified or not, under any circumstances. This includes locking your content behind a paywall (including the Minecraft Marketplace) or monetizing download links. Taking voluntary donations is still allowed, but if it feels like you're profiting off our work don't do it.
-
-5: Don't make your projects look official when they aren't. Examples of this behavior would include copying our branding or marking a project as "official" in a way that would confuse the average viewer into believing a project is official when it isn't.
-
-6: This file, unmodified, must be included in any content which contains any of our work.
-
+You may not do the following:
+1.  Lock content using or modifying our work behind a paywall. This includes the
+    Minecraft Marketplace and platforms like Patreon or Ko-fi.
+2.  Use monetized download links or link shorteners. You can use reward systems
+    offered by listing websites like CurseForge and Modrinth if your content is
+    mostly your own, but avoid these if it's mostly unoriginal or simple edits.
+3.  Indirectly take donations for content directly inspired by or based on our
+    work. If Faithful-related content is one small aspect of a larger creation
+    portfolio from which you receive donations, it's probably fine, but don't
+    make our work the main reason or entire basis for donating to you.
+4.  Use our work as a substitute for Minecraft's graphics when default textures
+    otherwise wouldn't be allowed. It makes us look bad when Faithful is only
+    seen as a free-to-use project that looks fairly similar to Minecraft's art,
+    so if Mojang wouldn't want you to use their work, we probably don't either.
+5.  Make your projects look official when they aren't. Don't copy our branding
+    or misleadingly call a project "official" in a way that would confuse an
+    average user into believing we officially run or endorse it.
+6.  Use our work in cryptocurrency or NFT-based projects.
+7.  Train neural networks or AI models on our work.
 
 Exceptions:
-
-
-1: If you're doing anything privately or undistributed to our work (e.g. custom edit for personal use, unpublished add-ons, mod support, personal Minecraft server resource pack, or edits either by you or from different packs) you can safely disregard all of these requirements since you are not gaining unfairly from us in any form.
-
-2: Projects not directly related to textures (e.g. website, bot) may have separate licenses with different terms. Check their respective pages or repositories for more information. If nothing is mentioned, assume that all rights remain reserved.
-
-3: If you are using textures made before March 2016 (Minecraft Release 1.9). These textures are licensed under Vattic's original Faithful 32x32 license, which has different requirements compared with this license. If you're interested, you can find the original license here under "Usage Guidelines":
-	https://web.archive.org/web/20150607220656/http://www.minecraftforum.net:80/forums/mapping-and-modding/resource-packs/1223254-faithful-32x32-pack-update-red-cat-clay-1-8
-
-
+1.  Private projects that use our work don't have to follow our requirements,
+    since you aren't gaining unfairly from us in any way. These include resource
+    pack edits, texture compilations, and add-ons made exclusively for personal
+    use, in addition to resource packs for small private Minecraft servers.
+2.  This license does not exhaustively apply to all Faithful services or
+    projects. Always check the specific terms of the project you're interested
+    in before assuming this license applies to it.
 
 We reserve the right to:
+1.  Refuse any person or group the ability to use, distribute, or modify any of
+    our work. This action is final, but would generally only be used in the case
+    of unusual situations.
+2.  Take legal action if you don't comply with these terms.
+3.  Change this license at any time and for any reason.
 
-
-1: Refuse the ability to use, distribute, or modify any work made by us for any person or group. This action would be final, generally only in the case of unusual circumstances.
-
-2: Take legal action if you do not comply with these guidelines.
-
-3: Change this license at any time for any reason.
+Still have questions? Contact us by email at contact@faithfulpack.net.
